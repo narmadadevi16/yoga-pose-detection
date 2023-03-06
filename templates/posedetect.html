@@ -1,0 +1,70 @@
+<!--Store this code in 'update.html' file inside the 'templates' folder-->
+<html lang="en">
+	<head>
+		<title>Pose Detection</title>
+		<link rel="stylesheet" href="../static/style.css">
+		<style>
+            body{
+                background-image:url('/static/img11.webp');
+            }
+
+        </style> 
+	</head>
+	<body bgcolor="#e6ffee">
+		<div class="one">
+			<div class="two">
+				<h1>Side Bar</h1>
+				<ul>
+					<li><a href="{{url_for('index')}}">Index</a></li>
+					<li><a href="{{url_for('display')}}">Display</a></li>
+					<li class="active"><a href="{{url_for('update')}}">Update</a></li>
+					<li><a href="{{url_for('posedetect')}}">Pose Detection</a></li>
+					<li><a href="{{url_for('logout')}}">Log out</a></li>
+				</ul>
+			</div>
+			<div class="content" align="center">
+				<div class="topbar">
+					<h2>Welcome!! You are in Prediction Page!! </h2>					
+				</div></br></br>
+				<div class="contentbar">
+				<h1>Yoga Pose Detection</h1></br>
+			<form action="{{ url_for('posedetect') }}" method="POST" enctype="multipart/form-data">
+				
+					<div class="msg">{{ msg }}</div>
+					
+					<label for="image">Upload an image:</label><br>
+					<input type="file" name="image" accept="image/*" class="textbox"><br><br>
+					<input type="submit" class="btn" value="Submit">
+			</form><br><br>
+			{% if prediction %}
+				<h2>Prediction:</h2>
+				<p class="msg" style="color: #0356ce;font-size:50px;font-style: oblique;"><b>{{ prediction }}</b></p>
+				{% endif %}		
+						
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Classifier</title>
+</head>
+<body>
+	<h1>Image Classifier</h1>
+	<form action="{{ url_for('posedetect')}}" method="POST" enctype="multipart/form-data">
+		<label for="image">Upload an image:</label><br>
+		<input type="file" name="image" accept="image/*"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+    
+   
+
+
+
+	
+</body>
+</html>
